@@ -1,0 +1,98 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "react-native-picker-android",
+        "scope": null,
+        "escapedName": "react-native-picker-android",
+        "name": "react-native-picker-android",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/yank8252/reactNative/WodapJA/Wodap"
+    ]
+  ],
+  "_from": "react-native-picker-android@latest",
+  "_id": "react-native-picker-android@1.0.3",
+  "_inCache": true,
+  "_location": "/react-native-picker-android",
+  "_nodeVersion": "6.1.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/react-native-picker-android-1.0.3.tgz_1468330475219_0.44016811228357255"
+  },
+  "_npmUser": {
+    "name": "zooble",
+    "email": "wenliang.web@gmail.com"
+  },
+  "_npmVersion": "3.8.6",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "react-native-picker-android",
+    "scope": null,
+    "escapedName": "react-native-picker-android",
+    "name": "react-native-picker-android",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-picker-android/-/react-native-picker-android-1.0.3.tgz",
+  "_shasum": "1607843bce510d35a28522511994d3cfced344dd",
+  "_shrinkwrap": null,
+  "_spec": "react-native-picker-android",
+  "_where": "/Users/yank8252/reactNative/WodapJA/Wodap",
+  "author": {
+    "name": "rsk",
+    "email": "rsk_rsk@163.com"
+  },
+  "bugs": {
+    "url": "https://github.com/beefe/react-native-picker-android/issues"
+  },
+  "dependencies": {},
+  "description": "react-native-picker-android",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "1607843bce510d35a28522511994d3cfced344dd",
+    "tarball": "https://registry.npmjs.org/react-native-picker-android/-/react-native-picker-android-1.0.3.tgz"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "gitHead": "52bf0b612449f225f1350577171e0be3e6b530ce",
+  "homepage": "https://github.com/beefe/react-native-picker-android#readme",
+  "keywords": [
+    "react-native",
+    "android",
+    "picker"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "rsk",
+      "email": "rsk_rsk@163.com"
+    },
+    {
+      "name": "zooble",
+      "email": "wenliang.web@gmail.com"
+    }
+  ],
+  "name": "react-native-picker-android",
+  "optionalDependencies": {},
+  "readme": "# react-native-picker-android\n\nPickerAndroid has PickerIOS interface in pure javascript\n\n###Warn\nif 0.14.2 <= react-native <=0.24 `npm install react-native-picker-android@0.3.8 --save`  \nif 0.24 < react-native `npm install react-native-picker-android --save`\n\n###Documentation\n\n####Props\n- <b>pickerStyle</b> viewStylePropType\n- <b>itemStyle</b> textStylePropType\n- <b>selectedValue</b> any\n- <b>onValueChange</b> function\n\n####Methods\n- <b>moveUp</b> when called, the wheel will go up, which will trigger onValueChange\n- <b>moveDown</b> when called, the wheel will go down, which will trigger onValueChange too.\n\n###Usage\n\n####Step 1 - install\n\n```\nnpm install react-native-picker-android --save\n```\n\n####Step 2 - import and use in project\n```javascript\n'use strict';\n\nimport React, {\n\tView,\n\tText,\n\tPlatform,\n\tPickerIOS\n} from 'react-native';\n\nimport PickerAndroid from 'react-native-picker-android';\n\nlet Picker = Platform.OS === 'ios' ? PickerIOS : PickerAndroid;\nlet PickerItem = Picker.Item;\n\nlet CAR_MAKES_AND_MODELS = {\n\tamc: {\n\t\tname: 'AMC',\n\t\tmodels: ['AMX', 'Concord', 'Eagle', 'Gremlin', 'Matador', 'Pacer'],\n\t},\n\talfa: {\n\t\tname: 'Alfa-Romeo',\n\t\tmodels: ['159', '4C', 'Alfasud', 'Brera', 'GTV6', 'Giulia', 'MiTo', 'Spider'],\n\t},\n\taston: {\n\t\tname: 'Aston Martin',\n\t\tmodels: ['DB5', 'DB9', 'DBS', 'Rapide', 'Vanquish', 'Vantage'],\n\t},\n\taudi: {\n\t\tname: 'Audi',\n\t\tmodels: ['90', '4000', '5000', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'Q5', 'Q7'],\n\t},\n\taustin: {\n\t\tname: 'Austin',\n\t\tmodels: ['America', 'Maestro', 'Maxi', 'Mini', 'Montego', 'Princess'],\n\t},\n\tborgward: {\n\t\tname: 'Borgward',\n\t\tmodels: ['Hansa', 'Isabella', 'P100'],\n\t},\n\tbuick: {\n\t\tname: 'Buick',\n\t\tmodels: ['Electra', 'LaCrosse', 'LeSabre', 'Park Avenue', 'Regal', 'Roadmaster', 'Skylark'],\n\t},\n\tcadillac: {\n\t\tname: 'Cadillac',\n\t\tmodels: ['Catera', 'Cimarron', 'Eldorado', 'Fleetwood', 'Sedan de Ville'],\n\t},\n\tchevrolet: {\n\t\tname: 'Chevrolet',\n\t\tmodels: ['Astro', 'Aveo', 'Bel Air', 'Captiva', 'Cavalier', 'Chevelle', 'Corvair', 'Corvette', 'Cruze', 'Nova', 'SS', 'Vega', 'Volt'],\n\t},\n};\n\nexport default class SomeScene extends React.Component {\n\n\tconstructor(props, context){\n\t\tsuper(props, context);\n\t\tthis.state = {\n\t\t\tcarMake: 'cadillac',\n\t\t\tmodelIndex: 3,\n\t\t}\n\t}\n\n\trender() {\n\t\tlet make = CAR_MAKES_AND_MODELS[this.state.carMake];\n\t\tlet selectionString = make.name + ' ' + make.models[this.state.modelIndex];\n\t\treturn (\n\t\t\t<View>\n\t\t\t\t<Text>Please choose a make for your car:</Text>\n\t\t\t\t<Picker\n\t\t\t\t\tselectedValue={this.state.carMake}\n\t\t\t\t\tonValueChange={(carMake) => this.setState({carMake, modelIndex: 0})}>\n\t\t\t\t\t{Object.keys(CAR_MAKES_AND_MODELS).map((carMake) => (\n\t\t\t\t\t\t<PickerItem\n\t\t\t\t\t\t\tkey={carMake}\n\t\t\t\t\t\t\tvalue={carMake}\n\t\t\t\t\t\t\tlabel={CAR_MAKES_AND_MODELS[carMake].name}\n\t\t\t\t\t\t/>\n\t\t\t\t\t))}\n\t\t\t\t</Picker>\n\t\t\t\t<Text>Please choose a model of {make.name}:</Text>\n\t\t\t\t<Picker\n\t\t\t\t\tselectedValue={this.state.modelIndex}\n\t\t\t\t\tkey={this.state.carMake}\n\t\t\t\t\tonValueChange={(modelIndex) => this.setState({modelIndex})}>\n\t\t\t\t\t{CAR_MAKES_AND_MODELS[this.state.carMake].models.map((modelName, modelIndex) => (\n\t\t\t\t\t\t<PickerItem\n\t\t\t\t\t\t\tkey={this.state.carMake + '_' + modelIndex}\n\t\t\t\t\t\t\tvalue={modelIndex}\n\t\t\t\t\t\t\tlabel={modelName}\n\t\t\t\t\t\t/>\n\t\t\t\t\t))}\n\t\t\t\t</Picker>\n\t\t\t\t<Text>You selected: {selectionString}</Text>\n\t\t\t</View>\n\t\t);\n\t}\n};\n```\n![example](./doc/example.png)",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beefe/react-native-picker-android.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.3"
+}
