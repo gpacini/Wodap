@@ -11,7 +11,6 @@ const styles = require("../Styles/Styles.js");
 const fillFunctions = require("./Helpers/Functions");
 const pushNotitificationConfigurator = new PushNotificationConfigurator();
 
-
 const Picker =  Platform.OS === 'ios' ? PickerIOS : PickerAndroid;
 const PickerItem = Platform.OS === 'ios' ? PickerIOS.Item : PickerAndroidItem;
 

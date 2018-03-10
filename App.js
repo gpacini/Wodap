@@ -4,6 +4,9 @@ import { TabViewAnimated, TabBar, SceneMap, TabViewPagerExperimental } from 'rea
 import WaterCalculatorView from './Views/WaterCalculatorView';
 import IdentificationNumberView from "./Views/IdentificationNumberView";
 import AlarmsView from "./Views/AlarmsView";
+import NutritionView from "./Views/NutritionView";
+import EarthView from "./Views/EarthView";
+import InfoView from "./Views/InfoView";
 
 const styles = require("./Styles/Styles.js");
 
@@ -14,9 +17,9 @@ const initialLayout = {
 
 const Alarms = () => <AlarmsView />
 const Calculator = () => <WaterCalculatorView />
-const Nutrition = () => <View style={{flex: 1, backgroundColor:'greenyellow'}} />
-const Earth = () => <View style={{flex: 1, backgroundColor:'greenyellow'}} />
-const Info = () => <View style={{flex: 1, backgroundColor:'greenyellow'}} />
+const Nutrition = () => <NutritionView />
+const Earth = () => <EarthView />
+const Info = () => <InfoView />
 
 const AlarmsImage = () => <Image style={{width:42, height:42}} source={require('./assets/icons/alarms.png')} />
 const CalculatorImage = () => <Image style={styles.tabImage} source={require('./assets/icons/calculator.png')} />
