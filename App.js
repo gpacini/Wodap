@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { View, StyleSheet, Dimensions, AsyncStorage, StatusBar, Image } from 'react-native';
-import { TabViewAnimated, TabBar, SceneMap, TabViewPagerExperimental } from 'react-native-tab-view';
+import { TabViewAnimated, TabBar, SceneMap, TabViewPagerExperimental } from './Modules/react-native-tab-view/src/index';
 import WaterCalculatorView from './Views/WaterCalculatorView';
 import IdentificationNumberView from "./Views/IdentificationNumberView";
 import AlarmsView from "./Views/AlarmsView";

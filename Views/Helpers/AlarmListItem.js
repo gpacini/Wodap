@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {View, Switch, Text} from 'react-native';
-import Swipeout from 'react-native-swipeout';
+import Swipeout from '../../Modules/react-native-swipeout/src/index';
 
 const styles = require('../../Styles/Styles');
 

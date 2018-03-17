@@ -10,7 +10,7 @@
         "spec": "0.0.74",
         "type": "version"
       },
-      "/Users/yank8252/reactNative/WodapJA/Wodap"
+      "/Users/yank8252/reactNative/ExpoWodap"
     ]
   ],
   "_from": "react-native-tab-view@0.0.74",
@@ -44,7 +44,7 @@
   "_shasum": "62c0c882d9232b461ce181d440d683b4f99d1bd8",
   "_shrinkwrap": null,
   "_spec": "react-native-tab-view@0.0.74",
-  "_where": "/Users/yank8252/reactNative/WodapJA/Wodap",
+  "_where": "/Users/yank8252/reactNative/ExpoWodap",
   "author": {
     "name": "Satyajit Sahoo",
     "email": "satyajit.happy@gmail.com",

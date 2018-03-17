@@ -1,11 +1,10 @@
 /* @flow */
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Animated, StyleSheet, View } from 'react-native';
 import { PagerRendererPropType } from './TabViewPropTypes';
 import type { PagerRendererProps } from './TabViewTypeDefinitions';
-import {PanGestureHandler, State as GestureHandlerState} from 'react-native-gesture-handler';
+import {GestureHandler, PanGestureHandler as PanGestureHandler} from 'react-native-gesture-handler';
 
 type Props<T> = PagerRendererProps<T> & {
   swipeDistanceThreshold?: number,
@@ -46,7 +45,7 @@ export default class TabViewPagerExperimental<T: *> extends React.Component<
   _handleHandlerStateChange = event => {
     const { GestureHandler } = this.props;
 
-    if (event.nativeEvent.state === GestureHandlerState.END) {
+    if (event.nativeEvent.state === GestureHandler.State.END) {
       const {
         navigationState,
         layout,

@@ -5,8 +5,8 @@ import {identificationAlgorithm} from "../Classes/IdentificationAlgorithm";
 const styles = require("../Styles/Styles.js");
 
 const logoDimensions = {
-  width: 928,
-  height: 469,
+  width: 559,
+  height: 253,
 }
 const win = Dimensions.get('window');
 

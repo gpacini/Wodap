@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { View, AsyncStorage, Text, StatusBar, TextInput, Image,
   TouchableOpacity, Modal, Picker as PickerIOS, Button, FlatList, Platform } from 'react-native';
-import NavigationBar from 'navigationbar-react-native';
+import NavigationBar from '../Modules/navigationbar-react-native/index';
 import AlarmListItem from "./Helpers/AlarmListItem";
 import MainView from "./MainView";
 import PushNotificationConfigurator from "../Classes/PushNotificationConfigurator";
-import PickerAndroid, {PickerAndroidItem} from 'react-native-picker-android';
+import PickerAndroid, {PickerAndroidItem} from '../Modules/react-native-picker-android/index';
 
 const styles = require("../Styles/Styles.js");
 const fillFunctions = require("./Helpers/Functions");

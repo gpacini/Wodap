@@ -1,0 +1,100 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "navigationbar-react-native",
+        "scope": null,
+        "escapedName": "navigationbar-react-native",
+        "name": "navigationbar-react-native",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/yank8252/reactNative/ExpoWodap"
+    ]
+  ],
+  "_from": "navigationbar-react-native@latest",
+  "_id": "navigationbar-react-native@0.0.3",
+  "_inCache": true,
+  "_location": "/navigationbar-react-native",
+  "_nodeVersion": "6.11.2",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/navigationbar-react-native-0.0.3.tgz_1503728700693_0.9440828254446387"
+  },
+  "_npmUser": {
+    "name": "jundat95",
+    "email": "it.tinhngo@gmail.com"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "navigationbar-react-native",
+    "scope": null,
+    "escapedName": "navigationbar-react-native",
+    "name": "navigationbar-react-native",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/navigationbar-react-native/-/navigationbar-react-native-0.0.3.tgz",
+  "_shasum": "b41d701318cb8204a9e6beea7c7c148020edcf81",
+  "_shrinkwrap": null,
+  "_spec": "navigationbar-react-native",
+  "_where": "/Users/yank8252/reactNative/ExpoWodap",
+  "author": {
+    "name": "Tinh Ngo",
+    "email": "it.tinhngo@gmail.com",
+    "url": "http://www.jundat95.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/jundat95/navigationbar-react-native/issues"
+  },
+  "dependencies": {},
+  "description": "Navigation bar in react native",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "b41d701318cb8204a9e6beea7c7c148020edcf81",
+    "tarball": "https://registry.npmjs.org/navigationbar-react-native/-/navigationbar-react-native-0.0.3.tgz"
+  },
+  "gitHead": "8d42b546b5502f1d635888b48997611ca75241d8",
+  "homepage": "https://github.com/jundat95/navigationbar-react-native#readme",
+  "keywords": [
+    "navigation-bar",
+    "react",
+    "react-native",
+    "android",
+    "ios",
+    "toolbar",
+    "mobile",
+    "customisable"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "jundat95",
+      "email": "it.tinhngo@gmail.com"
+    }
+  ],
+  "name": "navigationbar-react-native",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "react-native": ">=0.29"
+  },
+  "readme": "## NavigationBar React Native\n<p align=\"center\">\n    <img src =\"https://media.giphy.com/media/l41K0Zx8KkKn2w2Gc/giphy.gif\" />\n</p>\n\n### Content\n- [Installation](#installation)\n- [Usage example](#usage-example)\n- [Properties](#properties)\n- [Events](#events)\n- [Questions?](#questions)\n\n### Installation\n```bash\nnpm install navigationbar-react-native\n```\n### Usage example\n```javascript\n\nimport React, { Component } from 'react';\nimport {\n  AppRegistry,\n  StyleSheet,\n  Text,Image,\n  View, \n  TouchableOpacity,\n} from 'react-native';\nimport NavigationBar from 'navigationbar-react-native';\n\nconst ComponentLeft = () => {\n  return(\n    <View style={{ flex: 1, alignItems: 'flex-start'}} >\n       <TouchableOpacity style={ {justifyContent:'center', flexDirection: 'row'}}>\n        <Image \n          source={require('./img/ic_back.png')}\n          style={{ resizeMode: 'contain', width: 20, height: 20, alignSelf: 'center' }}\n        />\n        <Text style={{ color: 'white', }}>Back Home</Text>\n      </TouchableOpacity>\n    </View>\n  );\n};\n\nconst ComponentCenter = () => {\n  return(\n    <View style={{ flex: 1, }}>\n       <Image\n        source={require('./img/ic_logo.png')}\n        style={{resizeMode: 'contain', width: 200, height: 35, alignSelf: 'center' }}\n      />\n    </View>\n  );\n};\n\nconst ComponentRight = () => {\n  return(\n    <View style={{ flex: 1, alignItems: 'flex-end', }}>\n      <TouchableOpacity>\n        <Text style={{ color: 'white', }}> Right </Text>\n      </TouchableOpacity>\n    </View>\n  );\n};\n\nclass App extends Component {\n  render() {\n    return (\n      <View style={styles.container}>\n        <NavigationBar \n          componentLeft     =     {<ComponentLeft />}\n          componentCenter   =     {<ComponentCenter />}\n          componentRight    =     {<ComponentRight />}\n          navigationBarStyle=     {{ backgroundColor: ''#215e79'' }}\n          statusBarStyle    =     {{ barStyle: 'light-content', backgroundColor: '#215e79' }},\n        />\n      </View>\n    );\n  }\n}\n```\n\n### Properties\n* `statusBarStyle` (Object) - Style is object,\n* `navigationBarStyle` (Object) - Style is object,\n* `componentLeft` (Element) - Initial state (default: <View/>),\n* `componentCenter` (Element) - Initial state (default: <View/>),\n* `componentRight` (Element) - Initial state (default: <View/>),\n\n### Events\n\n\n### License\nMIT License\n\n### Questions?\nFeel free to [create an issue](https://github.com/jundat95/navigationbar-react-native/issues)\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jundat95/navigationbar-react-native.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.3"
+}
