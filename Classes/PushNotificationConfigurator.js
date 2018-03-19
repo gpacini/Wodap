@@ -32,8 +32,9 @@ export default class PushNotificationConfigurator {
     }
 
     var notification = {
+      userInfo: {id : hour + "000" + minutes},
       id : hour + "000" + minutes,
-      message: "Es hora de beber de tu Wodap!" + (name !== '' ? ": " + name : name),
+      message: "Es hora de beber de tu Wodap" + (name !== '' ? ": " + name : name) + "!",
       date: modifiedDate,
       repeatType: 'day',
     };
