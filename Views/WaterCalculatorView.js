@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions, Text, TextInput, Platform,
   TouchableOpacity, Keyboard, TouchableWithoutFeedback, Animated, Image } from 'react-native';
-import { Picker } from '../modules/react-native-picker-dropdown/index';
+import { Picker } from '../Modules/react-native-picker-dropdown/index';
 import { Picker  as AndroidPicker } from 'react-native';
 import { WaterCalculator } from '../Classes/WaterCalculator';
 import NavigationBar from '../Modules/navigationbar-react-native/index';
