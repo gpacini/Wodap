@@ -79,53 +79,19 @@ export default class App extends Component {
 
   constructor(props){
     super(props);
-    //AsyncStorage.clear();
-    this.loadKey();
-  }
-
-  loadKey(){
-    AsyncStorage.getItem('key', (err, result) => {
-        var key = JSON.parse(result);
-        if( key !== null ){
-          this.setState({registered: key.registered});
-        } else {
-          this.setState({registered: false});
-        }
-    });
-  }
-
-  async saveKey(){
-    try {
-      await AsyncStorage.setItem('key', '{"registered": true}');
-    } catch (error) {
-      console.log("Error saving data" + error);
-    }
   }
 
   render() {
-    if( this.state.registered ){
-      return (
-        <TabViewAnimated
-          style={styles.container}
-          navigationState={this.state}
-          renderScene={this._renderScene}
-          renderFooter={this._renderHeader}
-          onIndexChange={this._handleIndexChange}
-          renderPager = {this._renderPager}
-          initialLayout={initialLayout}
-        />
-      );
-    } else {
-      return (
-        <IdentificationNumberView
-          onValidated={() => {
-            this.saveKey();
-            this.setState({registered: true})
-          }
-        }
-        />
-      );
-    }
-
+    return (
+      <TabViewAnimated
+        style={styles.container}
+        navigationState={this.state}
+        renderScene={this._renderScene}
+        renderFooter={this._renderHeader}
+        onIndexChange={this._handleIndexChange}
+        renderPager = {this._renderPager}
+        initialLayout={initialLayout}
+      />
+    );
   }
 }
