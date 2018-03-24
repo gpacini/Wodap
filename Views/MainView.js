@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, Platform} from 'react-native';
+import {View, Text, Image, Platform, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import NavigationBar from '../Modules/navigationbar-react-native/index';
 
 const styles = require("../Styles/Styles.js");

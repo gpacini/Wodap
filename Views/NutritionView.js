@@ -8,6 +8,11 @@ const height = 768 * ratio;
 const imgStyle = {width:width, height:height, marginTop:10, marginBottom:10};
 const imgStyle2 = {width:width, height:height/2, marginTop:10, marginBottom:10};
 
+
+const ratio2 = width/600;
+const height2 = 370 * ratio2;
+const imgStyle3 = {width:width, height:height2, marginTop:10, marginBottom:10};
+
 const  Image1 = () => <Image style={imgStyle} resizeMode="contain" source={require('../assets/nutrition/1.png')} />
 const  Image2 = () => <Image style={imgStyle} resizeMode="contain" source={require('../assets/nutrition/2.png')} />
 const  Image3 = () => <Image style={imgStyle} resizeMode="contain" source={require('../assets/nutrition/3.png')} />
@@ -21,6 +26,10 @@ const Image10 = () => <Image style={imgStyle2} resizeMode="contain" source={requ
 const Image11 = () => <Image style={imgStyle} resizeMode="contain" source={require('../assets/nutrition/11.png')} />
 const Image12 = () => <Image style={imgStyle} resizeMode="contain" source={require('../assets/nutrition/12.png')} />
 const Image13 = () => <Image style={imgStyle2} resizeMode="contain" source={require('../assets/nutrition/13.png')} />
+
+
+const  Image14 = () => <Image style={imgStyle3} resizeMode="contain" source={require('../assets/info/1.png')} />
+const  Image15 = () => <Image style={imgStyle3} resizeMode="contain" source={require('../assets/info/2.png')} />
 
 const styles = require("../Styles/Styles.js");
 
@@ -100,6 +109,24 @@ export default class NutritionView extends Component {
             <Text>Beber la cantidad de agua adecuada ayuda a luchar contra la gripe y otras dolencias como los cálculos y ataques al corazón.</Text>
           </Text>
           <Image13 />
+
+          <View>
+            <Text style={{fontSize:30, textAlign:'center'}}>Pulseras detectoras de radiación</Text>
+          </View>
+          <Text >
+            <Text>En la pulsera que vino en tu Wodap JA, tienes unos cuantos mullos detectores de rayos UV, mientras más intenso sea el color, más intenso son los rayos ultravioletas.</Text>
+          </Text>
+          <Image14 />
+
+          <Text>
+            <Text>Los rayos UV son más intenso mientras más cerca se está de la línea ecuatorial. Son los principales causantes de daños y cáncer a la piel, ya que afecta el ADN de las células.</Text>
+            <Text>Una exposición continua a rayos UV puede también causar un envejecimiento prematuro en la piel, con quemaduras, manchas y hasta arrugas. </Text>
+          </Text>
+          <Image15 />
+
+          <Text >
+            <Text>Si los mullos de tu pulsera brillan muy fuerte, ¡deberías alejarte del sol o usar gorra!</Text>
+          </Text>
       </ScrollView>
       </MainView>
     );

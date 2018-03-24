@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Dimensions, Text, TextInput, Platform,
+import { View, StyleSheet, Dimensions, Text, TextInput, Platform, AsyncStorage,
   TouchableOpacity, Keyboard, TouchableWithoutFeedback, Animated, Image } from 'react-native';
 import { Picker } from '../Modules/react-native-picker-dropdown/index';
 import { Picker  as AndroidPicker } from 'react-native';
@@ -106,8 +106,20 @@ export default class WaterCalculatorView extends Component {
     this.setState({intake: this.calculator.getIntake(), showIntake: true});
   }
 
+  saveAsBest = async () => {
+    let intake = this.state.intake;
+    try{
+      await AsyncStorage.setItem('intake', intake);
+    } catch(error){
+      console.log("Error saving data: " + error);
+    }
+  }
+
   render(){
     let intake = this.state.showIntake ? this.state.intake + " litros al día" : '';
+    let saveButton = this.state.showIntake ?
+      <TouchableOpacity
+        style={{alignItems:'center', marginTop:10}} onPress={()=>this.saveAsBest()}><Image source={require("../assets/guardar.png")} style={{width:190, height:50}} /></TouchableOpacity> : "";
     return (
       <MainView
         componentRight={this.componentRight } >
@@ -149,6 +161,7 @@ export default class WaterCalculatorView extends Component {
             <Image source={require("../assets/calcular.png")} style={{width:190, height:50}} />
           </TouchableOpacity>
           <Text style={{fontSize:50, textAlign:'center', marginTop:40}}>{intake}</Text>
+          {saveButton}
         </View>
       </TouchableWithoutFeedback>
       </View>
@@ -156,3 +169,6 @@ export default class WaterCalculatorView extends Component {
     );
   };
 };
+
+
+  const {width} = Dimensions.get("window");

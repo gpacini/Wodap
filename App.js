@@ -6,7 +6,7 @@ import IdentificationNumberView from "./Views/IdentificationNumberView";
 import AlarmsView from "./Views/AlarmsView";
 import NutritionView from "./Views/NutritionView";
 import EarthView from "./Views/EarthView";
-import InfoView from "./Views/InfoView";
+import DailyDrink from "./Views/DailyDrink";
 
 const styles = require("./Styles/Styles.js");
 
@@ -14,12 +14,6 @@ const initialLayout = {
   height: 0,
   width: Dimensions.get('window').width,
 };
-
-const Alarms = () => <AlarmsView />
-const Calculator = () => <WaterCalculatorView />
-const Nutrition = () => <NutritionView />
-const Earth = () => <EarthView />
-const Info = () => <InfoView />
 
 const AlarmsImage = () => <Image style={{width:42, height:42}} source={require('./assets/icons/alarms.png')} />
 const CalculatorImage = () => <Image style={styles.tabImage} source={require('./assets/icons/calculator.png')} />
@@ -35,19 +29,29 @@ const SelectedInfoImage = () => <Image style={styles.tabImage} source={require('
 
 export default class App extends Component {
 
+  Alarms = () => <AlarmsView />
+  Calculator = () => <WaterCalculatorView />
+  Nutrition = () => <NutritionView />
+  Earth = () => <EarthView />
+  Info = () => <DailyDrink  onRef={ref => (this.child = ref)} />
+
   state = {
     index: 0,
     registered : true,
     routes: [
+      { key: 'info'},
       { key: 'alarms' },
       { key: 'calculator' },
       { key: 'nutrition'},
       { key: 'earth'},
-      { key: 'info'},
     ],
   };
 
-  _handleIndexChange = index => this.setState({ index });
+  _handleIndexChange = index => {
+    console.log("Index change");
+    this.child.forceUpdate();
+    this.setState({ index });
+  }
   _renderHeader = props => <TabBar {...props}
                               style={{backgroundColor:'white', borderTopColor:'gray', borderTopWidth:2}}
                               renderIcon={this._renderIcon}
@@ -70,11 +74,11 @@ export default class App extends Component {
   }
 
   _renderScene = SceneMap({
-    alarms: Alarms,
-    calculator: Calculator,
-    nutrition: Nutrition,
-    earth: Earth,
-    info: Info,
+    alarms: this.Alarms,
+    calculator: this.Calculator,
+    nutrition: this.Nutrition,
+    earth: this.Earth,
+    info: this.Info,
   });
 
   constructor(props){
