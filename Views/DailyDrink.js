@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, TextInput,
-  AsyncStorage, FlatList, Dimensions, Button, Image, TouchableOpacity, Keyboard} from 'react-native';
+  AsyncStorage, FlatList, Dimensions, Button, Image, TouchableOpacity, Keyboard, TouchableWithoutFeedback} from 'react-native';
 
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
@@ -94,35 +94,41 @@ export default class DailyDrink extends Component{
       score+= v.intake;
     });
     let percentage = (score/1000) / this.state.intake * 100;
-    console.log(score + " - " + percentage);
+    if( percentage > 100 ){
+      alert("¡Felicitaciones!¡Cumpliste tu meta del día!")
+    }
     return(
       <MainView>
-        <Text style={styles.titleText}>Tomado en el día</Text>
-        <View style={{paddingLeft:75, paddingRight:75}}>
-        <AnimatedCircularProgress
-          size={width-150}
-          width={35}
-          fill={percentage}
-          tintColor="#00e0ff"
-          backgroundColor="#3d5875" >
-          {
-            (fill) => (
-              <Text style={{fontSize:30}}>
-                {score} mL
-              </Text>
-            )
-          }
-        </AnimatedCircularProgress>
-        </View>
-        <Text style={styles.titleText}>Recomendado: {this.state.intake * 1000} mL </Text>
-        <FormLabel>Agregar Toma (ml)</FormLabel>
-        <FormInput
-          keyboardType={'numeric'}
-          value={this.state.currentIntake}
-          onChangeText={(text) => {
-            this.setState({currentIntake:text});
-          }}
-        />
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View>
+            <Text style={styles.titleText}>Tomado en el día</Text>
+            <View style={{paddingLeft:75, paddingRight:75}}>
+            <AnimatedCircularProgress
+              size={width-150}
+              width={35}
+              fill={percentage}
+              tintColor="#00e0ff"
+              backgroundColor="#3d5875" >
+              {
+                (fill) => (
+                  <Text style={{fontSize:30}}>
+                    {score} mL
+                  </Text>
+                )
+              }
+            </AnimatedCircularProgress>
+            </View>
+            <Text style={styles.titleText}>Recomendado: {this.state.intake * 1000} mL </Text>
+            <FormLabel>Agregar Toma (mL)</FormLabel>
+            <FormInput
+              keyboardType={'numeric'}
+              value={this.state.currentIntake}
+              onChangeText={(text) => {
+                this.setState({currentIntake:text});
+              }}
+            />
+          </View>
+        </TouchableWithoutFeedback>
         <TouchableOpacity onPress={()=>{this.addValue(); Keyboard.dismiss();}}>
           <View style={{alignItems:'center', marginTop:15}}>
             <Image source={require("../assets/agregar.png")} style={{width:190, height:50}} />

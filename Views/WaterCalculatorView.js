@@ -13,6 +13,8 @@ const styles = require("../Styles/Styles.js");
 const initialInfoHeight = 0;
 const finalInfoHeight = 200;
 
+const {width, height} = Dimensions.get("window");
+
 export default class WaterCalculatorView extends Component {
 
   infoIsShowing = false;
@@ -43,7 +45,7 @@ export default class WaterCalculatorView extends Component {
   androidPicker = () => {
     return(
       <AndroidPicker
-        style={{width:120, height:30, borderBottomColor:'lightgray', borderBottomWidth:1}}
+        style={{flex:1, height:30, borderBottomColor:'lightgray', borderBottomWidth:1, margin:0, padding:0}}
         mode='dialog'
         selectedValue={this.state.units}
         itemStyle = {[ {color:'black'}]}
@@ -58,10 +60,12 @@ export default class WaterCalculatorView extends Component {
 
   constructor(props){
     super(props);
-    this.state = {weight : 0, excercise : 0, units : 'kg', intake: 0, showIntake : false};
+    this.state = {weight : "", excercise : "", units : 'kg', intake: "", showIntake : false};
     this.calculator = new WaterCalculator();
     this.infoViewHeight = new Animated.Value(initialInfoHeight);
     this.infoViewOpacity = new Animated.Value(0);
+    this.calculatorHeight = new Animated.Value(height*5/6);
+    this.calculatorOpacity = new Animated.Value(1);
   }
 
   showInfoBox = () =>{
@@ -104,10 +108,46 @@ export default class WaterCalculatorView extends Component {
     this.calculator.setValues(this.state.weight, this.state.units, this.state.excercise);
     this.calculator.calculate();
     this.setState({intake: this.calculator.getIntake(), showIntake: true});
+
+    this.hideCalculator();
+  }
+
+  hideCalculator = () => {
+    Animated.parallel([
+      Animated.timing(this.calculatorHeight,
+      {
+        toValue:0,
+        duration:500
+      }),
+      Animated.timing(this.calculatorOpacity,{
+        duration: 500,
+        toValue: 0,
+      })]).start();
+  }
+
+  showCalculator = () => {
+    Animated.parallel([
+      Animated.timing(this.calculatorHeight,
+      {
+        toValue:height*5/6,
+        duration:500
+      }),
+      Animated.timing(this.calculatorOpacity,{
+        duration: 500,
+        toValue: 1,
+      })]).start();
+  }
+
+  resetEverything = () => {
+    this.showCalculator();
+    this.setState({
+      weight : "", excercise : "", units : 'kg', intake: "", showIntake : false
+    });
   }
 
   saveAsBest = async () => {
     let intake = this.state.intake;
+    alert("¡Tu valor diario a tomar ahora es de: " + this.state.intake +" litros!");
     try{
       await AsyncStorage.setItem('intake', intake);
     } catch(error){
@@ -119,7 +159,10 @@ export default class WaterCalculatorView extends Component {
     let intake = this.state.showIntake ? this.state.intake + " litros al día" : '';
     let saveButton = this.state.showIntake ?
       <TouchableOpacity
-        style={{alignItems:'center', marginTop:10}} onPress={()=>this.saveAsBest()}><Image source={require("../assets/guardar.png")} style={{width:190, height:50}} /></TouchableOpacity> : "";
+        style={{alignItems:'center', marginTop:10}} onPress={() => this.saveAsBest()}><Image source={require("../assets/guardar.png")} style={{width:190, height:50}} /></TouchableOpacity> : <View></View>;
+    let resetButton = this.state.showIntake ?
+      <TouchableOpacity
+        style={{alignItems:'center', marginTop:10}} onPress={() => this.resetEverything()}><Image source={require("../assets/reset.png")} style={{width:190, height:50}} /></TouchableOpacity> : <View></View>;
     return (
       <MainView
         componentRight={this.componentRight } >
@@ -129,39 +172,44 @@ export default class WaterCalculatorView extends Component {
         </Text>
       </Animated.View>
       <View style={[styles.container]} >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} accessible={false}>
         <View>
-          <View style={[styles.flexRow, {borderBottomWidth:1, borderBottomColor:'gray'}]}>
-            <Text style={[styles.bodyText, {flex:1, textAlign: 'left',}]}>Peso:</Text>
-            <TextInput
-              style={[styles.bodyText, {textAlign:'left', flex:1, fontWeight:'bold'}]}
-              placeholder = "Kilogramos o Libras"
-              keyboardType='numeric'
-              onChangeText={(text) => this.setState({weight: text})} />
-          </View>
+          <Animated.View style={{height:this.calculatorHeight, opacity: this.calculatorOpacity}} >
             <View style={[styles.flexRow, {borderBottomWidth:1, borderBottomColor:'gray'}]}>
-            <Text style={[styles.bodyText, {textAlign:'left', flex:1}]}>Unidades:</Text>
-            {this.currentPicker()}
-          </View>
-            <View style={[styles.flexRow, {borderBottomWidth:1, borderBottomColor:'gray'}]}>
-          <Text
-            style={[styles.bodyText, {textAlign:'left', flex:1}]}>Ejercicio:</Text>
-            <TextInput
-              style={[styles.bodyText, {textAlign:'left', flex:1, fontWeight:'bold'}]}
-              placeholder = "Minutos"
-              keyboardType='numeric'
-              onChangeText={(text) => this.setState({excercise: text})} />
+              <Text style={[styles.bodyText, {flex:1, textAlign: 'left',}]}>Peso:</Text>
+              <TextInput
+                style={[styles.bodyText, {textAlign:'left', flex:1, fontWeight:'bold'}]}
+                placeholder = "Kilogramos o Libras"
+                keyboardType='numeric'
+                value={this.state.weight+""}
+                onChangeText={(text) => this.setState({weight: text})} />
             </View>
-          <TouchableOpacity
-            style={{alignItems:'center', marginTop:20}}
-            onPress={() => {
-            this.calculate()
-            Keyboard.dismiss();
-          }}>
-            <Image source={require("../assets/calcular.png")} style={{width:190, height:50}} />
-          </TouchableOpacity>
+              <View style={[styles.flexRow, {borderBottomWidth:1, borderBottomColor:'gray'}]}>
+              <Text style={[styles.bodyText, {textAlign:'left', flex:1}]}>Unidades:</Text>
+              {this.currentPicker()}
+            </View>
+              <View style={[styles.flexRow, {borderBottomWidth:1, borderBottomColor:'gray'}]}>
+            <Text
+              style={[styles.bodyText, {textAlign:'left', flex:1}]}>Ejercicio:</Text>
+              <TextInput
+                style={[styles.bodyText, {textAlign:'left', flex:1, fontWeight:'bold'}]}
+                placeholder = "Minutos"
+                keyboardType='numeric'
+                value={this.state.excercise+""}
+                onChangeText={(text) => this.setState({excercise: text})} />
+              </View>
+            <TouchableOpacity
+              style={{alignItems:'center', marginTop:20}}
+              onPress={() => {
+              this.calculate();
+              Keyboard.dismiss();
+            }}>
+              <Image source={require("../assets/calcular.png")} style={{width:190, height:50}} />
+            </TouchableOpacity>
+          </Animated.View>
           <Text style={{fontSize:50, textAlign:'center', marginTop:40}}>{intake}</Text>
           {saveButton}
+          {resetButton}
         </View>
       </TouchableWithoutFeedback>
       </View>
@@ -169,6 +217,3 @@ export default class WaterCalculatorView extends Component {
     );
   };
 };
-
-
-  const {width} = Dimensions.get("window");

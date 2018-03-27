@@ -30,8 +30,6 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new VectorIconsPackage(),
             new ReactNativePushNotificationPackage(),
-            new RNGestureHandlerPackage(),
-            new ReactNativePushNotificationPackage(),
             new RNGestureHandlerPackage()
       );
     }
